@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | EstatePro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">Estate<span>Pro</span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#/properties">Buy</a>
+        <a href="index.html#/properties?type=rent">Rent</a>
+        <a href="index.html#/post" id="postPropertyNav">Post Property</a>
+        <div class="nav-mobile-user-actions" id="navMobileUserActions"></div>
+      </nav>
+
+      <div class="nav-actions" id="navActions">
+        <a id="usernameGreeting" href="#" class="user-profile-link"></a>
+      </div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <section class="section">
+      <div class="container profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <div class="profile-header-content">
+            <h1>My Profile</h1>
+            <p class="profile-welcome">Welcome back, <span id="headerUserName">Loading...</span></p>
+          </div>
+          <a href="index.html" class="btn btn-outline back-btn">← Back</a>
+        </div>
+
+        <!-- User Information Card -->
+        <div class="profile-card">
+          <div class="profile-card-header">
+            <h3>User Information</h3>
+          </div>
+          <div class="profile-card-body">
+            <div class="profile-info-grid">
+              <div class="profile-info-item">
+                <label class="profile-label">Name:</label>
+                <span id="userName" class="profile-value">Loading...</span>
+              </div>
+              <div class="profile-info-item">
+                <label class="profile-label">Email:</label>
+                <span id="userEmail" class="profile-value">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Properties Section -->
+        <div class="properties-section">
+          <div class="section-head">
+            <h3>My Properties</h3>
+          </div>
+          <div id="userPropertiesGrid" class="profile-properties-grid"></div>
+          <p id="emptyUserProperties" class="empty hidden">You haven't posted any properties yet.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="profile.js"></script>
+</body>
+</html>

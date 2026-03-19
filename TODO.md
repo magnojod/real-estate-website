@@ -1,0 +1,56 @@
+# TODO
+
+- [x] Create/update backend server with MongoDB connection and static frontend serving
+- [x] Create User model
+- [x] Create Property model
+- [x] Implement auth routes (signup/login/me)
+- [x] Implement property routes (CRUD + list + my properties + details)
+- [x] Build responsive frontend HTML structure (home, auth, dashboard, forms, details)
+- [x] Build professional responsive CSS styling
+- [x] Implement frontend JS for auth, CRUD, rendering, routing by hash views
+- [x] Update package.json scripts and dependencies
+- [x] Add .env.example
+- [x] Verify consistency of API endpoints used by frontend/backend
+- [x] Add new #/properties page view and wiring
+- [x] Update nav/hero links to route to #/properties
+- [x] Implement loadAllPropertiesPage() in script.js
+- [x] Add/adjust styles for properties page header/back button
+- [x] Verify GET /api/properties and #/properties rendering
+- [x] Add multer dependency and uploads static serving
+- [x] Migrate property schema from imageUrl to images array
+- [x] Update property routes for multipart create/update with multiple images
+- [x] Update signup/login redirect behavior in frontend
+- [x] Replace image URL input with file input in post form
+- [x] Update frontend create/edit submit to use FormData
+- [x] Render first image on home/properties cards using images[0]
+- [x] Implement details image slider with prev/next + thumbnails
+- [x] Verify full backend + frontend flow with uploaded images
+- [ ] Update backend multer image limit from 10 to 5
+- [ ] Refactor frontend image selection to selectedImages temporary array
+- [ ] Add remove button per image preview and sync with selectedImages/input
+- [ ] Enforce max 5 images validation on selection
+- [ ] Ensure create flow validates at least one image
+- [x] Update automated verification script for new max-5/remove requirements
+- [x] Run verification test and confirm all checks pass
+- [ ] Add "Add Image" button in each preview row
+- [ ] Append newly selected files to selectedImages (do not replace)
+- [ ] Enforce max 5 total while appending from Add Image flow
+- [ ] Keep remove behavior and FormData submission intact
+- [ ] Update styles for image-preview-row, remove-btn, add-btn
+- [x] Update verification script and rerun
+- [x] Add dedicated mobile responsive improvements in style.css (@media max-width: 768px)
+- [x] Fix navbar overflow and mobile menu stacking behavior
+- [x] Improve hero typography and stack hero buttons on mobile
+- [x] Make search container full-width and stacked on mobile
+- [x] Enforce single-column property cards and responsive media scaling
+- [x] Add mobile container padding and full-width buttons
+- [x] Quick CSS conflict sanity check
+- [ ] Add dedicated mobile user menu container in index.html
+- [ ] Update script.js renderNav to populate desktop + mobile user links and logout handlers
+- [ ] Hide desktop nav actions on mobile and show user links inside hamburger dropdown
+- [ ] Strengthen Post Property mobile layout rules for .form-card/.grid-form/.field
+- [x] Re-check selector consistency after mobile navbar + form changes
+- [ ] Remove desktop Dashboard/Logout injection from renderNav()
+- [ ] Keep Dashboard/Logout only in #navMobileUserActions
+- [ ] Ensure .nav-mobile-user-actions hidden on desktop and visible only on mobile dropdown
+- [ ] Re-validate navbar behavior constraints (desktop clean nav, mobile menu contains user actions)

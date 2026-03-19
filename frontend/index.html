@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EstatePro | Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#/" class="brand">Estate<span>Pro</span></a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#/">Home</a>
+        <a href="#/properties">Buy</a>
+        <a href="#/properties?type=rent">Rent</a>
+        <a href="#/post" id="postPropertyNav">Post Property</a>
+        <div class="nav-mobile-user-actions" id="navMobileUserActions"></div>
+      </nav>
+
+      <div class="nav-actions" id="navActions">
+        <a id="usernameGreeting" href="#" class="user-profile-link"></a>
+      </div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <section id="homeView" class="view active">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div>
+            <p class="hero-tag">India's Trusted Real Estate Platform</p>
+            <h1>Find your dream home with confidence</h1>
+            <p>
+              Browse premium properties for sale and rent across top cities.
+              Verified listings, smart filters, and a smooth buying experience.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#/properties">Explore Buy</a>
+              <a class="btn btn-outline" href="#/properties">Explore Rent</a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h3>Search Properties</h3>
+            <form id="searchForm">
+              <div class="search-row">
+                <input type="text" id="searchInput" placeholder="Search by city, title, locality..." />
+                <div id="citySuggestions" class="city-suggestions"></div>
+              </div>
+              <div class="search-filters">
+                <select id="typeFilter">
+                  <option value="">All Types</option>
+                  <option value="buy">Buy</option>
+                  <option value="rent">Rent</option>
+                </select>
+                <select id="bedroomsFilter">
+                  <option value="">Bedrooms</option>
+                  <option value="1">1 BHK</option>
+                  <option value="2">2 BHK</option>
+                  <option value="3">3 BHK</option>
+                  <option value="4">4 BHK</option>
+                  <option value="5">5+ BHK</option>
+                </select>
+              </div>
+              <div class="price-filters">
+                <input type="number" id="minPriceInput" placeholder="Min Price (₹)" />
+                <input type="number" id="maxPriceInput" placeholder="Max Price (₹)" />
+              </div>
+              <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Featured Properties</h2>
+          </div>
+          <div id="propertyGrid" class="property-grid"></div>
+          <p id="emptyProperties" class="empty hidden">No properties found.</p>
+          <div id="loadMoreContainer" class="load-more-container hidden">
+            <button id="loadMoreBtn" class="btn btn-outline full">Load More</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="propertiesView" class="view">
+      <div class="container section">
+        <div class="section-head properties-page-head">
+          <a href="#/" class="btn btn-outline">← Back</a>
+          <h2>All Properties</h2>
+          <div></div>
+        </div>
+        <div id="allPropertiesGrid" class="property-grid"></div>
+        <p id="emptyAllProperties" class="empty hidden">No properties available right now.</p>
+      </div>
+    </section>
+
+    <section id="authView" class="view">
+      <div class="container auth-wrap">
+        <div class="auth-card">
+          <h2 id="authTitle">Login</h2>
+          <form id="authForm">
+            <div class="field hidden" id="nameField">
+              <label for="nameInput">Full Name</label>
+              <input id="nameInput" type="text" placeholder="Enter your full name" />
+            </div>
+            <div class="field">
+              <label for="emailInput">Email</label>
+              <input id="emailInput" type="email" placeholder="Enter your email" required />
+              <button type="button" class="btn btn-outline" id="sendOtpBtn" style="margin-top: 8px; width: 100%;">Send Verification Code</button>
+            </div>
+            <div class="field hidden" id="otpField">
+              <label for="otpInput">Verification Code</label>
+              <input id="otpInput" type="text" placeholder="Enter 6-digit code" maxlength="6" />
+              <small class="hint">Check your email for the verification code</small>
+            </div>
+            <div class="field">
+              <label for="passwordInput">Password</label>
+              <input id="passwordInput" type="password" placeholder="Enter your password" required />
+            </div>
+            <button class="btn btn-primary full" type="submit" id="authSubmitBtn">Login</button>
+          </form>
+          <p class="switch-text">
+            <span id="authSwitchText">Don't have an account?</span>
+            <a href="#" id="authSwitchLink">Sign up</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="view">
+      <div class="container section">
+        <div class="section-head">
+          <h2>Your Dashboard</h2>
+          <a href="#/post" class="btn btn-primary">+ Add Property</a>
+        </div>
+        <div id="dashboardGrid" class="property-grid"></div>
+        <p id="emptyDashboard" class="empty hidden">You have not posted any properties yet.</p>
+      </div>
+    </section>
+
+    <section id="postView" class="view">
+      <div class="container section">
+        <div class="form-card">
+          <h2 id="postFormTitle">Post Property</h2>
+          <form id="propertyForm" class="grid-form" enctype="multipart/form-data">
+            <input type="hidden" id="propertyIdInput" />
+            <div class="field">
+              <label for="titleInput">Title</label>
+              <input id="titleInput" type="text" required />
+            </div>
+            <div class="field">
+              <label for="typeInput">Type</label>
+              <select id="typeInput" required>
+                <option value="buy">Buy</option>
+                <option value="rent">Rent</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="priceInput">Price (₹)</label>
+              <input id="priceInput" type="number" min="0" required />
+            </div>
+            <div class="field">
+              <label for="cityInput">City</label>
+              <input id="cityInput" type="text" required />
+            </div>
+            <div class="field">
+              <label for="localityInput">Locality</label>
+              <input id="localityInput" type="text" required />
+            </div>
+            <div class="field">
+              <label for="areaInput">Area (sqft)</label>
+              <input id="areaInput" type="number" min="1" required />
+            </div>
+            <div class="field">
+              <label for="bedroomsInput">Bedrooms</label>
+              <input id="bedroomsInput" type="number" min="0" required />
+            </div>
+            <div class="field">
+              <label for="bathroomsInput">Bathrooms</label>
+              <input id="bathroomsInput" type="number" min="0" required />
+            </div>
+            <div class="field full-row">
+              <label for="imagesInput">Property Images</label>
+              <input id="imagesInput" type="file" name="images" multiple accept="image/*" />
+              <small class="hint">You can upload multiple images. On edit, new selected images replace old images.</small>
+              <div id="imagePreview" class="image-preview-grid"></div>
+            </div>
+            <div class="field full-row">
+              <label for="descriptionInput">Description</label>
+              <textarea id="descriptionInput" rows="4" required></textarea>
+            </div>
+            <div class="form-actions full-row">
+              <button class="btn btn-primary" type="submit" id="propertySubmitBtn">Save Property</button>
+              <button class="btn btn-outline hidden" type="button" id="cancelEditBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="detailsView" class="view">
+      <div class="container section">
+        <div id="propertyDetails"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
