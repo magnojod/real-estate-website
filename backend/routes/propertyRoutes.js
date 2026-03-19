@@ -31,6 +31,34 @@ const upload = multer({
 
 const getImagePathsFromFiles = (files = []) => files.map((file) => `/uploads/${file.filename}`);
 
+// FIRST: specific routes
+router.get("/my", authMiddleware, async (req, res) => {
+  try {
+    const properties = await Property.find({ owner: req.user._id }).sort({ createdAt: -1 });
+    return res.status(200).json({ properties });
+  } catch (error) {
+    return res.status(500).json({ message: "Failed to fetch user properties", error: error.message });
+  }
+});
+
+// Get properties by user ID
+router.get("/user/:userId", async (req, res) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.userId)) {
+      return res.status(400).json({ message: "Invalid user id" });
+    }
+
+    const properties = await Property.find({ owner: req.params.userId })
+      .populate("owner", "name email")
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json({ properties });
+  } catch (error) {
+    return res.status(500).json({ message: "Failed to fetch user properties", error: error.message });
+  }
+});
+
+// THEN: generic routes
 router.get("/", async (req, res) => {
   try {
     const { q, type, minPrice, maxPrice, bedrooms, page = 1 } = req.query;
@@ -82,15 +110,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/my", authMiddleware, async (req, res) => {
-  try {
-    const properties = await Property.find({ owner: req.user._id }).sort({ createdAt: -1 });
-    return res.status(200).json({ properties });
-  } catch (error) {
-    return res.status(500).json({ message: "Failed to fetch user properties", error: error.message });
-  }
-});
-
+// LAST: dynamic routes
 router.get("/:id", async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
