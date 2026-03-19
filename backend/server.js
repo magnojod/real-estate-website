@@ -19,12 +19,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
-app.use(express.static(path.join(__dirname, "..")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "index.html"));
-});
-
 const connectDB = async () => {
   try {
     if (!process.env.MONGO_URI) {
