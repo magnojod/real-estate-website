@@ -736,7 +736,7 @@ const sendOTP = async () => {
   btn.innerText = "Sending...";
 
   try {
-    const res = await fetch("https://real-estate-backend-1ygn.onrender.com/api/auth/send-otp", {
+    const res = await fetch("https://real-estate-website-ks3y.onrender.com/api/auth/send-otp", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -756,12 +756,11 @@ const sendOTP = async () => {
 
     console.log("OTP RESPONSE:", data);
 
-    if (!res.ok) {
-      showToast(data.message || "OTP failed", "error");
-      return;
+    if (!data.success) {
+      throw new Error(data.message);
     }
 
-    showToast("OTP sent! (Check console for OTP)");
+    showToast("OTP sent! Check your email");
     otpSent = true;
     otpField.classList.remove("hidden");
     btn.innerText = "Resend Code";

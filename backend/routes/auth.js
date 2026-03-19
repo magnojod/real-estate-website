@@ -87,15 +87,15 @@ router.post("/send-otp", async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       success: true,
-      message: "Verification code sent to your email" 
+      message: "OTP sent successfully"
     });
   } catch (error) {
     console.error("Error sending OTP:", error);
     return res.status(500).json({ 
       success: false,
-      message: "Failed to send verification code", 
+      message: "Failed to send OTP",
       error: error.message 
     });
   }
@@ -162,18 +162,16 @@ router.post("/verify-otp", async (req, res) => {
       expiresIn: "7d" 
     });
 
-    return res.status(201).json({
-      message: "Account created successfully",
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
       token,
-      user: { 
-        id: user._id, 
-        name: user.name, 
-        email: user.email 
-      }
+      user: { id: user._id, name: user.name, email: user.email }
     });
   } catch (error) {
     console.error("Error verifying OTP:", error);
     return res.status(500).json({ 
+      success: false,
       message: "Server error during verification", 
       error: error.message 
     });
