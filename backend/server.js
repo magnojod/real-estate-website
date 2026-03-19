@@ -19,6 +19,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 
+app.get("/", (req, res) => {
+  res.json({ message: "API is running 🚀" });
+});
+
 const connectDB = async () => {
   try {
     if (!process.env.MONGO_URI) {
